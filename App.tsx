@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-export default function App() {
+import { Container, TextHeader, Header } from "./styles/sharedstyles";
+
+import Button from "./components/Button";
+import InputDefault from "./components/Input";
+import ItemContact from "./components/Item";
+
+export default function App(): JSX.Element {
+  // async story
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container>
+      <Header>
+        <TextHeader>AGENDA TELEFÔNICA - DDM</TextHeader>
+      </Header>
+
+      <InputDefault
+        text="Nome:"
+        icon={require("./assets/user-small-black.png")}
+      />
+      <InputDefault
+        text="Celular:"
+        icon={require("./assets/phone-small-black.png")}
+      />
+      <Button />
+
+      <View style={styles.barContact}></View>
+
+      <Text style={styles.listContactHeader}>Lista de Contatos</Text>
+
+      {[0, 1, 2].map((v, i) => {
+        return <ItemContact key={i} />;
+      })}
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  listContactHeader: {
+    fontSize: 25,
+    fontWeight: "700",
+    marginBottom: 23,
+  },
+  barContact: {
+    width: "100%",
+    backgroundColor: "#C4C4C4",
+    height: 7,
+    marginBottom: 12,
   },
 });
