@@ -1,1 +1,1 @@
-# mobile_device_development
+# App - React Native - People Counter
