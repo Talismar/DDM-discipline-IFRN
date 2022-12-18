@@ -1,31 +1,29 @@
-import React from 'react';
-import { Text } from 'react-native';
-import styled from 'styled-components/native';
+import React from "react";
+import styled from "styled-components/native";
 
-
-const Button: React.FC = () => {
-  return <CustomButton>
-    <CustomText>Adicionar</CustomText>
-  </CustomButton>;
+function Button({ newContact }: { newContact: () => Promise<void> }) {
+  return (
+    <CustomButton onPress={newContact}>
+      <CustomText>Adicionar</CustomText>
+    </CustomButton>
+  );
 }
 
 export default Button;
 
 const CustomButton = styled.TouchableOpacity`
-  width: 241px;
   height: 39px;
-  background-color: #613EEA;
-  
+  background-color: #613eea;
+
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 28px;
-`
+  margin-top: 18px;
+`;
 
 const CustomText = styled.Text`
-
   color: #fff;
   font-weight: 600;
-  
-`
+`;
