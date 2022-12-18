@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, FlatList } from "react-native";
 
 import { Container, TextHeader, Header } from "./styles/sharedstyles";
 
@@ -119,7 +119,7 @@ export default function App(): JSX.Element {
 
       <Text style={styles.listContactHeader}>Lista de Contatos</Text>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      {/* <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ marginBottom: 32 }}>
           {contact.map((v, i) => {
             return (
@@ -132,7 +132,23 @@ export default function App(): JSX.Element {
             );
           })}
         </View>
-      </ScrollView>
+      </ScrollView> */}
+
+      <FlatList
+        style={{ marginBottom: 32 }}
+        showsVerticalScrollIndicator={false}
+        data={contact}
+        keyExtractor={(item) => item.number}
+        renderItem={(v) => (
+          <ItemContact
+            key={v.item.id}
+            name={v.item.name}
+            number={v.item.number}
+            deleteContact={() => deleteContact(v.item.id)}
+          />
+        )}
+        ListEmptyComponent={() => <Text>Nenhum Contato Cadastrado</Text>}
+      />
     </Container>
   );
 }
