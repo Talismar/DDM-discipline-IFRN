@@ -1,11 +1,11 @@
 import React from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const CustomPickerDate: React.FC<{ chose: () => void }> = ({ chose }) => {
-  const [date, setDate] = React.useState<Date>();
+interface Props {
+  chose: (date?: Date) => void;
+}
 
-  console.log(date);
-
+const CustomPickerDate: React.FC<Props> = ({ chose }) => {
   return (
     <DateTimePicker
       dateFormat="day month year"
@@ -13,8 +13,7 @@ const CustomPickerDate: React.FC<{ chose: () => void }> = ({ chose }) => {
       minimumDate={new Date(2020, 10, 12)}
       value={new Date()}
       onChange={(e, value) => {
-        setDate(value);
-        chose();
+        chose(value);
       }}
     />
   );

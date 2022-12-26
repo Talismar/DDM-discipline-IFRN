@@ -4,8 +4,15 @@ import * as Styles from "./styles";
 import logo from "@assets/logo.png";
 import CustomButton from "@components/CustomButton";
 import CustomInput from "@components/CustomInput";
+import { useNavigation } from "@react-navigation/native";
 
 const Login: React.FC = () => {
+  const navigation = useNavigation();
+
+  function handleAuth() {
+    navigation.navigate("diary");
+  }
+
   return (
     <Styles.Container>
       <Image source={logo} />
@@ -18,7 +25,7 @@ const Login: React.FC = () => {
       <Styles.BoxInputButton>
         <CustomInput placeholder="Login" style={{ marginBottom: 15 }} />
         <CustomInput placeholder="Senha" style={{ marginBottom: 24 }} />
-        <CustomButton>Entrar</CustomButton>
+        <CustomButton onPress={handleAuth}>Entrar</CustomButton>
       </Styles.BoxInputButton>
     </Styles.Container>
   );

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import styled from "styled-components/native";
 
-function CustomPicker({
+function SelectCategory({
   modalVisible,
   setModalVisible,
+  items,
 }: {
   modalVisible: boolean;
-  setModalVisible: () => void;
+  setModalVisible: (name: string) => void;
+  items: string[];
 }) {
   return (
     <View style={styles.centeredView}>
@@ -22,41 +24,27 @@ function CustomPicker({
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            {/* <Text style={styles.modalText}>Alimentos</Text>
-            <Text style={styles.modalText}>Atividades</Text>
-            <Text style={styles.modalText}>Test</Text> */}
-            <Pressable
-              style={[styles.button, styles.buttonClose, { marginBottom: 15 }]}
-              onPress={setModalVisible}
-            >
-              <Text style={styles.textStyle}>Atividades</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose, { marginBottom: 15 }]}
-              onPress={setModalVisible}
-            >
-              <Text style={styles.textStyle}>Alimentos</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={setModalVisible}
-            >
-              <Text style={styles.textStyle}>Atividades</Text>
-            </Pressable>
+            {items.map((v, i) => (
+              <Pressable
+                key={i}
+                style={[
+                  styles.button,
+                  styles.buttonClose,
+                  { marginBottom: 15 },
+                ]}
+                onPress={() => setModalVisible(v)}
+              >
+                <Text style={styles.textStyle}>{v}</Text>
+              </Pressable>
+            ))}
           </View>
         </View>
       </Modal>
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable> */}
     </View>
   );
 }
 
-export default CustomPicker;
+export default SelectCategory;
 
 const styles = StyleSheet.create({
   centeredView: {

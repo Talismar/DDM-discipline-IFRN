@@ -8,18 +8,30 @@ import ListEmpty from "@components/ListEmpty";
 import styled from "styled-components/native";
 import CustomInput from "@components/CustomInput";
 import CustomButton from "@components/CustomButton";
-import CustomPicker from "@components/CustomPicker";
+import SelectCategory from "@components/SelectCategory";
 import CustomPickerDate from "@components/CustomPickerDate";
 
 const NewTask: React.FC = () => {
-  const [groups, setGroups] = React.useState(false);
+  const [showCalendar, setShowcalendar] = React.useState(false);
+  const [handleValues, setHandleValues] = React.useState({
+    date: "Data",
+    category: ["Alimentos", "Escolar"],
+    selectCategory: "Categoria",
+  });
   const [modalVisible, setModalVisible] = React.useState(false);
 
-  function handleModalCalendar() {
-    setGroups(!groups);
+  function handleModalCalendar(date?: Date) {
+    if (date != undefined) {
+      setHandleValues({
+        ...handleValues,
+        date: `${date?.getDate()}/${date?.getMonth()}/${date?.getFullYear()}`,
+      });
+    }
+    setShowcalendar(!showCalendar);
   }
 
-  function handleModalCategory() {
+  function handleModalCategory(name: string) {
+    setHandleValues({ ...handleValues, selectCategory: name });
     setModalVisible(!modalVisible);
   }
 
@@ -43,22 +55,27 @@ const NewTask: React.FC = () => {
           style={{ marginBottom: 14 }}
           onPress={() => setModalVisible(!modalVisible)}
         >
-          <Text style={{ color: "#b2b2b2", fontWeight: "700" }}>Categoria</Text>
+          <Text style={{ color: "#b2b2b2", fontWeight: "700" }}>
+            {handleValues.selectCategory}
+          </Text>
         </StyledCustomInput>
 
         <StyledCustomInput onPress={() => handleModalCalendar()}>
-          <Text style={{ color: "#b2b2b2", fontWeight: "700" }}>Data</Text>
+          <Text style={{ color: "#b2b2b2", fontWeight: "700" }}>
+            {handleValues.date}
+          </Text>
         </StyledCustomInput>
 
-        {groups && <CustomPickerDate chose={handleModalCalendar} />}
+        {showCalendar && <CustomPickerDate chose={handleModalCalendar} />}
 
         <CustomButton variant="primary" style={{ marginTop: 30 }}>
           Cadastrar
         </CustomButton>
       </StyledBoxInputs>
 
-      <CustomPicker
+      <SelectCategory
         modalVisible={modalVisible}
+        items={handleValues.category}
         setModalVisible={handleModalCategory}
       />
     </Styles.Container>
