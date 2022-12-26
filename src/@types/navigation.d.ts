@@ -3,6 +3,7 @@ export declare global {
     interface RootParamList {
       diary: undefined;
       listTask: undefined;
+      List: undefined;
     }
   }
 }

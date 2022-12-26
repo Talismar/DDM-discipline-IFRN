@@ -4,6 +4,8 @@ import Checkbox from "expo-checkbox";
 import styled from "styled-components/native";
 import { Trash } from "phosphor-react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { CoreContext } from "../../context/ContextDiary";
+import { useContext } from "react";
 
 interface ListTask {
   id: number;
@@ -12,32 +14,11 @@ interface ListTask {
 }
 
 const Diary: React.FC = () => {
-  const [listTask, setListTask] = React.useState<ListTask[]>([
-    {
-      id: 0,
-      task: "Terminar projeto integrador",
-      isChecked: false,
-    },
-    {
-      id: 1,
-      task: "Thalocan Project",
-      isChecked: false,
-    },
-    {
-      id: 2,
-      task: "Atividade de APOO",
-      isChecked: false,
-    },
-    {
-      id: 3,
-      task: "Atividade de estrutura de dados",
-      isChecked: false,
-    },
-  ]);
+  const { taskList, setTaskList } = useContext(CoreContext);
 
   function removeItem(id: number) {
-    setListTask(
-      listTask.filter((v) => {
+    setTaskList(
+      taskList.filter((v) => {
         return v.id !== id;
       })
     );
@@ -49,13 +30,13 @@ const Diary: React.FC = () => {
         <StyledTextH1>Cadastro de Tarefa</StyledTextH1>
 
         <StyledTextP>
-          Você tem {listTask.length}{" "}
+          Você tem {taskList.length}{" "}
           <Text style={{ fontWeight: "700" }}>Tarefas</Text>
         </StyledTextP>
       </StyledHeader>
 
       <View style={{ marginTop: 38 }}>
-        {listTask.map((v, index) => (
+        {taskList.map((v, index) => (
           <LinearGradient
             colors={
               index % 2 === 0
@@ -78,8 +59,8 @@ const Diary: React.FC = () => {
                 value={v.isChecked}
                 color={v.isChecked ? "#1DB863" : "#B2B2B2"}
                 onValueChange={() =>
-                  setListTask(
-                    listTask.map((update) => {
+                  setTaskList(
+                    taskList.map((update) => {
                       if (v.id === update.id) {
                         return {
                           ...update,
@@ -101,7 +82,7 @@ const Diary: React.FC = () => {
                   }
                 }
               >
-                {v.task}
+                {v.title}
               </Text>
             </View>
 

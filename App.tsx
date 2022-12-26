@@ -3,6 +3,7 @@
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components/native";
 import theme from "@theme/index";
+import CoreProvider from "./src/context/ContextDiary";
 
 import {
   useFonts,
@@ -11,7 +12,6 @@ import {
 } from "@expo-google-fonts/roboto";
 import Loading from "@components/Loading";
 import Routes from "./src/Routes";
-import { AppRoutesTab } from "./AppRoutesTab";
 
 export default function App() {
   /* Carregar font em toda aplicação */
@@ -23,7 +23,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar style="light" backgroundColor="#1DB863" translucent={false} />
 
-      {fontLoaded ? <Routes /> : <Loading />}
+      <CoreProvider>{fontLoaded ? <Routes /> : <Loading />}</CoreProvider>
     </ThemeProvider>
   );
 }

@@ -1,6 +1,3 @@
-import GroupCard from "@components/GroupCard";
-import Header from "@components/Header";
-import Highlight from "@components/Highlight";
 import React from "react";
 import { FlatList, Text } from "react-native";
 import * as Styles from "./styles";
@@ -10,15 +7,21 @@ import CustomInput from "@components/CustomInput";
 import CustomButton from "@components/CustomButton";
 import SelectCategory from "@components/SelectCategory";
 import CustomPickerDate from "@components/CustomPickerDate";
+import { CoreContext } from "../../context/ContextDiary";
+import { useContext } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 
-const NewTask: React.FC = () => {
+const NewTask: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [showCalendar, setShowcalendar] = React.useState(false);
   const [handleValues, setHandleValues] = React.useState({
+    title: "Titulo",
+    description: "Descrição",
     date: "Data",
     category: ["Alimentos", "Escolar"],
     selectCategory: "Categoria",
   });
   const [modalVisible, setModalVisible] = React.useState(false);
+  const { taskList, setTaskList } = useContext(CoreContext);
 
   function handleModalCalendar(date?: Date) {
     if (date != undefined) {
@@ -35,6 +38,33 @@ const NewTask: React.FC = () => {
     setModalVisible(!modalVisible);
   }
 
+  function handleSubmit() {
+    setTaskList([
+      ...taskList,
+      {
+        id: taskList.length !== 0 ? taskList.length + 1 : 0,
+        title: handleValues.title,
+        description: handleValues.description,
+        category: handleValues.selectCategory,
+        date: handleValues.date,
+        isChecked: false,
+      },
+    ]);
+
+    navigation.navigate("List");
+  }
+
+  // useFocusEffect(() => {
+  //   console.log("Talismar");
+  //   setHandleValues({
+  //     title: "Titulo",
+  //     description: "Descrição",
+  //     date: "Data",
+  //     category: ["Alimentos", "Escolar"],
+  //     selectCategory: "Categoria",
+  //   });
+  // });
+
   return (
     <Styles.Container>
       <StyledTitle>Cadastro de Tarefa</StyledTitle>
@@ -44,11 +74,17 @@ const NewTask: React.FC = () => {
           placeholder="Titulo"
           variant="outline"
           style={{ marginBottom: 14 }}
+          onChangeText={(text) =>
+            setHandleValues({ ...handleValues, title: text })
+          }
         />
         <CustomInput
           placeholder="Descrição"
           variant="outline"
           style={{ marginBottom: 14 }}
+          onChangeText={(text) =>
+            setHandleValues({ ...handleValues, description: text })
+          }
         />
 
         <StyledCustomInput
@@ -68,7 +104,11 @@ const NewTask: React.FC = () => {
 
         {showCalendar && <CustomPickerDate chose={handleModalCalendar} />}
 
-        <CustomButton variant="primary" style={{ marginTop: 30 }}>
+        <CustomButton
+          variant="primary"
+          style={{ marginTop: 30 }}
+          onPress={handleSubmit}
+        >
           Cadastrar
         </CustomButton>
       </StyledBoxInputs>
