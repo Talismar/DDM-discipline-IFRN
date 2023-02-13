@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "name": "John",
+      "email": "admin",
+      "password": "senha",
+      "photo": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540talismar%252Fcandeia-farm/ImagePicker/e2240dbc-e5c9-49e9-81d0-8055f95c376d.mp4",
+      "id": 1
+    },
+    {
+      "name": "Talismar Fernandes Costa",
+      "email": "talismar@gmail.com",
+      "password": "asd",
+      "id": 2
+    },
+    {
+      "name": "Jose amariodo",
+      "photo": "",
+      "email": "jose@gmail.com",
+      "password": "secret",
+      "id": 3
+    },
+    {
+      "name": "Geraldo Fernandes Costa",
+      "photo": "",
+      "email": "geraldo.una@gmail.com",
+      "password": "geraldo",
+      "id": 4
+    },
+    {
+      "name": "Antonio Da Silva Junior",
+      "photo": "",
+      "email": "antonio.una@gmail.com",
+      "password": "antonio",
+      "id": 5
+    },
+    {
+      "name": "josefa ferreira de sousa",
+      "photo": "",
+      "email": "josefa@gmail.com",
+      "password": "josefa",
+      "id": 6
+    },
+    {
+      "name": "Antonia",
+      "photo": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540talismar%252Fcandeia-farm/ImagePicker/6c7ecc28-8c78-4597-8bd5-27a86e1257a9.jpeg",
+      "email": "talismar788.una@gmail.com",
+      "password": "asd",
+      "id": 7
+    },
+    {
+      "name": "Zé Ferreira Cavalcante Junior",
+      "email": "talismar788.una@gmail.com",
+      "password": "asd",
+      "id": 8
+    },
+    {
+      "name": "Bruna",
+      "email": "bruna@gmail.com",
+      "password": "1234",
+      "photo": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540talismar%252Fcandeia-farm/ImagePicker/ebe2ecf0-badb-44d8-88e6-c4263fba4b58.jpeg",
+      "id": 9
+    }
+  ],
+  "system-settings": [
+    {
+      "price_per_liter": 1.25,
+      "id": 1
+    }
+  ]
+}
