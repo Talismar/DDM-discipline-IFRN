@@ -60,6 +60,13 @@
       "password": "1234",
       "photo": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540talismar%252Fcandeia-farm/ImagePicker/ebe2ecf0-badb-44d8-88e6-c4263fba4b58.jpeg",
       "id": 9
+    },
+    {
+      "name": "Ciro de Sousa junior",
+      "email": "ciro.una@gmail.com",
+      "password": "asd",
+      "photo": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540talismar%252Fcandeia-farm/ImagePicker/84cbb457-97f4-4081-9248-3ee2a2cac2c6.jpeg",
+      "id": 10
     }
   ],
   "system-settings": [
